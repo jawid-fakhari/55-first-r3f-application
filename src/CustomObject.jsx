@@ -1,9 +1,10 @@
-import { useMemo } from 'react'
+import { useEffect, useMemo, useRef } from 'react'
 import * as THREE from 'three'
 
 //Come creare un costum geometry
 //Piu o meno uguale al native three.js
 function CustomObject() {
+    const geometryRef = useRef()
 
     const verticesCount = 10 * 3
 
@@ -18,12 +19,15 @@ function CustomObject() {
 
         return positions
     }, [])
-    
+
+    useEffect(() => {
+        geometryRef.current.computeVertexNormals()
+    }, [])
 
     return (
         <>
             <mesh>
-                <bufferGeometry>
+                <bufferGeometry ref={geometryRef}>
                     <bufferAttribute
                         attach="attributes-position"
                         count={verticesCount}
@@ -31,7 +35,7 @@ function CustomObject() {
                         array={positions}
                     />
                 </bufferGeometry>
-                <meshBasicMaterial color="orange" side={THREE.DoubleSide} />
+                <meshStandardMaterial color="blue" side={THREE.DoubleSide} />
             </mesh>
         </>
     )
