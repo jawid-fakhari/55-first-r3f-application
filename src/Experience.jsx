@@ -1,6 +1,7 @@
 import { extend, useFrame, useThree } from "@react-three/fiber"
 import { useRef } from "react"
 import { OrbitControls } from "three/examples/jsm/Addons.js"
+import CustomObject from "./CustomObject"
 
 //extend method, converte una classe Three.js a una versione dichiarativ e la rende disponibile in jsx
 //chiamiamo extend sulla OrbitControls, cosi possiamo usare <orbitControls> all'interno di jsx
@@ -47,6 +48,8 @@ function Experience() {
         <planeGeometry />
         <meshStandardMaterial color="greenyellow" />
       </mesh>
+
+      <CustomObject />
     </>
   )
 }
