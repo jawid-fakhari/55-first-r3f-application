@@ -21,9 +21,19 @@ function Experience() {
   //useFrame prende il valore corrente del rotazione sul asse y e aggiunge 0.01
   //nel useFrame basta passare due parameteri state e delta, e quindi non c'è bisogno di fare il calcolo di delta. state ci ritorna lo stato dello mesh
   useFrame((state, delta) => {
+    //angolo è uguale al movimento di mille secondi del clock 
+    const angle = state.clock.elapsedTime
+
+    state.camera.position.z = Math.cos(angle) * 8
+    state.camera.position.x = Math.sin(angle) * 8
+    // con il metodo lookAt fissiamo il focus della camera al centro
+    state.camera.lookAt(0, 0, 0)
+
+
     // groupRef.current.rotation.y += delta * 0.5
     cubeRef.current.rotation.y += delta * 0.5
   })
+
 
   return (
     <>
