@@ -1,10 +1,12 @@
 import { useFrame } from "@react-three/fiber"
 
 function Experience() {
+  //in r3f, la scena renderizzato on each frame ma niente si muove
+  //quindi usiamo useFrame che è r3f hook
   useFrame(() => {
     console.log('tick');
   })
-  
+
   return (
     <>
       <mesh rotation-y={Math.PI * 0.23} position={[2, 0, 0]} scale={1.5}>
